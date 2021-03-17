@@ -17,9 +17,11 @@ define SEDUTIL_POST_EXTRACT_ACTIONS
 sed -i '/^CLEANFILES/d' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.am
 sed -i '/^BUILT_SOURCES/d' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.am
 sed -i '/^linux\/Version/,3 d' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.am
+sed -i 's/^AM_CXXFLAGS.*/\0 -DPBA_BUILD/' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.am
 sed -i '/^BUILT_SOURCES/d' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.in
 sed -i '/^CLEANFILES/d' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.in
 sed -i '/^linux\/Version/,3 d' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.in
+sed -i 's/^AM_CXXFLAGS.*/\0 -DPBA_BUILD/' $(BUILD_DIR)/sedutil-$(SEDUTIL_VERSION)/Makefile.in
 endef
 SEDUTIL_POST_EXTRACT_HOOKS += SEDUTIL_POST_EXTRACT_ACTIONS
 $(eval $(autotools-package))
